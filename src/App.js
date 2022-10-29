@@ -11,7 +11,6 @@ function App() {
       <Header />
       
       <Api />
-      <KeywordForm />
 
     </div>
   )

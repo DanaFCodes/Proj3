@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
     function KeywordForm(props) {
-        const [keywords, setKeywords] = useState('');
 
       
         return (
 
-            <form onSubmit={(e) => {props.getKeyword(e)}}>
+            <form onSubmit={(e) => {console.log("running onSubmit inside KeywordForm"); props.callDatabase(e)}}>
             <p>please enter some keywords to search through the database</p>
             <label>
                 Keywords:
@@ -14,7 +13,7 @@ import { useState } from 'react';
             </label>
             <div> 
             <button type="submit">let's see my inspo!</button>
-            <button type="submit">surprise me</button>
+            {/* <button type="submit">surprise me</button> */}
             </div>
         </form>
         

@@ -14,20 +14,16 @@ function ApiCall() {
 
 
     // ok before i had the buttons set under the drop down, and this preventDefault() function worked... now its not working -- is refreshing the page🥲🥲🥲
-    function getUserSelectedApi(e, value) {
+    function getUserSelectedApi(e) {
         // updated selectedAPi(^) with arugmnet "value", through setSelectedApi function
         e.preventDefault();
-        setSelectedApi(value)
+        setSelectedApi(e.target.value)
     }
 
-    // trying to prevent default on the buttons :(
-    function getKeyword(e) {
-        e.preventDefault();
-        //     setSelectedApi(value)
-    }
 
-    console.log(selectedApi);
-    useEffect(() => {
+
+    function makeRequest() {
+        console.log("makingRequest")
         if (selectedApi === 'AIC') {
             axios({
                 url: `https://api.artic.edu/api/v1/artworks`,
@@ -39,8 +35,8 @@ function ApiCall() {
                 
             }).then((response) => {
                 // ok how can i decunstruct this so that this is what's called for every object in the response (check felicia's stupid github)
-                const whatever = response.data.data[1]['id'];
-                console.log(whatever);
+                // const whatever = response.data.data[1]['id'];
+                // console.log(whatever);
                 setAllArt(response.data)
             });
         } else if (selectedApi === 'V&A') {
@@ -52,8 +48,8 @@ function ApiCall() {
 
                 },
             }).then((response) => {
-                setAllArt(response.data)
-                console.log('api2 loaded')
+                setAllArt(response.data.records)
+                // console.log('api2 loaded')
             });
 
         } else {
@@ -65,13 +61,22 @@ function ApiCall() {
 
                 },
             }).then((response) => {
-                setAllArt(response.data)
-                console.log('api3 loaded')
+                setAllArt(response.data.data)
+                // console.log('api3 loaded')
             });
         }
             
         // is rendered when user makes selection 
-    }, [selectedApi]);
+    }
+
+    // trying to prevent default on the buttons :(
+    function callDatabase(e) {
+        e.preventDefault();
+        //     setSelectedApi(value)
+        // console.log(e.target[0].value)
+        makeRequest()
+
+    }
 
     // has to be outside of useEffect (asynch)
     console.log(allArt);
@@ -79,7 +84,13 @@ function ApiCall() {
     return (
         <>
         <DropDown getUserSelectedApi={getUserSelectedApi} />
-        <KeywordForm getKeyword={getKeyword} />
+        <KeywordForm callDatabase={callDatabase} />
+        {allArt.map(item => {
+            if(!!item?.images?.print?.url) {
+                return <img key={item.id} src={item.images.print.url} width="500" height="600"/>
+            }
+            return <div/>
+        } )}
         </>
     )
 
