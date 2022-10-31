@@ -1,55 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-
-// child to this comp
+import './partials/_api.scss';
+// children to this component: 
 import DropDown from './DropDown';
 import KeywordForm from './KeywordsForm';
 
+
 function ApiCall() {
-    // first value is current state when we render, second value is a function which updates our state
+    // first value is current state when we render, second value is a function which updates our state... so here we are using the setAllArt function to store the API response, and then accessing it with allArt when we map through at the bottom... wondering if 
     const [allArt, setAllArt] = useState([]);
-   
+    
     // in quotaation becuase value is in ''
-    const [selectedApi, setSelectedApi] = useState('AIC');
-
-
-    // ok before i had the buttons set under the drop down, and this preventDefault() function worked... now its not working -- is refreshing the page🥲🥲🥲
-    function getUserSelectedApi(e) {
-        // updated selectedAPi(^) with arugmnet "value", through setSelectedApi function
-        e.preventDefault();
-        setSelectedApi(e.target.value)
-    }
-
+    const [selectedApi, setSelectedApi] = useState('');
 
 
     function makeRequest() {
-        console.log("makingRequest")
         if (selectedApi === 'AIC') {
             axios({
-                url: `https://api.artic.edu/api/v1/artworks`,
+                url: `https://api.artsy.net/api/`,
                 method: "GET",
                 dataResponse: "json",
                 params: {
-                    limit: 100,     
+                    client_id: 'f99c82f03c43e56ff8b7',
+                    limit: 100,
                 }
                 
             }).then((response) => {
-                // ok how can i decunstruct this so that this is what's called for every object in the response (check felicia's stupid github)
-                // const whatever = response.data.data[1]['id'];
-                // console.log(whatever);
                 setAllArt(response.data)
             });
-        } else if (selectedApi === 'V&A') {
+
+        } else if (selectedApi === 'RIJKS') {
             axios({
-                url: `https://api.vam.ac.uk/v2/objects/search`,
+                url: 'https://www.rijksmuseum.nl/api/en/collection',
                 method: "GET",
                 dataResponse: "json",
                 params: {
-
+                    // imgonly: true,
+                    key: 'rtliWmhr',
+                    ps: 100,
                 },
             }).then((response) => {
-                setAllArt(response.data.records)
-                // console.log('api2 loaded')
+                setAllArt(response.data.artObjects)
             });
 
         } else {
@@ -58,46 +49,61 @@ function ApiCall() {
                 method: "GET",
                 dataResponse: "json",
                 params: {
-
+                    limit: 100,
                 },
             }).then((response) => {
                 setAllArt(response.data.data)
                 // console.log('api3 loaded')
             });
         }
-            
-        // is rendered when user makes selection 
     }
 
-    // trying to prevent default on the buttons :(
     function callDatabase(e) {
         e.preventDefault();
-        //     setSelectedApi(value)
-        // console.log(e.target[0].value)
         makeRequest()
-
     }
+
+    function getUserSelectedApi(e) {
+        // updated selectedAPi(^) with arugmnet "value", through setSelectedApi function
+        e.preventDefault();
+        setSelectedApi(e.target.value)
+    }
+
 
     // has to be outside of useEffect (asynch)
     console.log(allArt);
 
     return (
         <>
-        <DropDown getUserSelectedApi={getUserSelectedApi} />
-        <KeywordForm callDatabase={callDatabase} />
-        {allArt.map(item => {
-            if(!!item?.images?.print?.url) {
-                return <img key={item.id} src={item.images.print.url} width="500" height="600"/>
+            <DropDown getUserSelectedApi={getUserSelectedApi} />
+            <KeywordForm callDatabase={callDatabase} />
+            
+            {
+                
+                allArt.map(item => {
+
+                    if (!!item?.images) {
+                        return (<figure className='img'><img className='cma' key={item.id} src={item.images.print.url}  />
+                            <figcaption className='caption'><h2>{item.title} {item.creation_date} {item.creators.description}</h2></figcaption>
+                        </figure>)
+                    } else if (!!item?.webImage) {
+                        return (<figure className='img'><img key={item.id} src={item.webImage.url} />
+                            <figcaption className='caption'><h2>{item.longTitle}</h2></figcaption>
+                        </figure>)
+
+
+                    }
+
+
+                })
+            
             }
-            return <div/>
-        } )}
+            
+             
         </>
     )
 
-
 }
-
-
 
 
 export default ApiCall;

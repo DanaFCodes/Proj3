@@ -1,11 +1,8 @@
 const Header = () => {
-
-    console.log('Header has rendered');
-
     return (
-        <>
-        <h1>CGAC art inspo yo!</h1>
-        </>
+        <div className='header'>
+        <h1>✨Inspiration✨</h1>
+        </div>
     )
 }
 
