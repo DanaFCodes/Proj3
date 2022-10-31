@@ -1,21 +1,19 @@
-import { useState } from 'react';
+function KeywordForm(props) {
 
-    function KeywordForm(props) {
-
-      
-        return (
-
-            <form onSubmit={(e) => {console.log("running onSubmit inside KeywordForm"); props.callDatabase(e)}}>
+    return (
+        <form className="form" onSubmit={(e) => {console.log("running onSubmit inside KeywordForm"); props.callDatabase(e)}}>
             <p>please enter some keywords to search through the database</p>
-            <label>
-                Keywords:
-                <input type="text" name="name" />
-            </label>
-            <div> 
-            <button type="submit">let's see my inspo!</button>
-            {/* <button type="submit">surprise me</button> */}
+            <div>
+        <label>
+            Keywords:
+            <input type="text" name="name" />
+                </label>
             </div>
-        </form>
+        <div className="button"> 
+        <button className="letsSee" type="submit">inspo🪄</button>
+        <button className="rando" type="submit">surprise me</button>
+        </div>
+    </form>
         
     )
 }
