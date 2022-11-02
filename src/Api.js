@@ -9,13 +9,9 @@ import Loader from './Loader';
 
 function ApiCall() {
     const [allArt, setAllArt] = useState([]);
-
     const [selectedApi, setSelectedApi] = useState('');
-
     const [loading, setLoading] = useState(false);
-
     const [keyword, setKeyword] = useState('');
-
     const [inspoClicked, setInspoClicked] = useState(false);
 
     function makeRequest() {
