@@ -18,7 +18,7 @@
         background-color: #ed6a5a;
         border: none;
         border-radius: 30%;
-        border: 8px dotted #f4f1bb;
+        border: 8px dotted #ffe66d;
         color: #0f2f34;
         font-weight: 600;
         
@@ -41,13 +41,12 @@
     justify-content: center;
     margin-bottom: 5%;
     flex-wrap: wrap;
-   
-
 }
 
 .img {
     position: relative;
-    margin-top: 10%;
+    margin-top: 20%;
+    padding-bottom: 2%;
 }
 
 .caption {
@@ -60,33 +59,31 @@
     img {
         max-width: 100%;
         max-height: 90vh;
-       
     }
 
     h2 {
     font-family: $h1;
     text-align: center;
-    padding-bottom: 10%;
     letter-spacing: 8px;
     text-transform: uppercase;
     color: #1a535c;
-    font-size: 1rem;
+    font-size: .8rem;
     padding-top: 2%;
-    width: 80%;
+    width: 70%;
     }
 }
 
 
 .form {
     text-align: center;
-    margin-top: 8%;
+    margin-top: 6%;
     font-family: $p;
     color:#2f827d;
     font-weight: 600;
     font-size: 1rem;
     
     .button {
-        margin-top: 2%;
+        margin-top: -5%;
         position: relative;
         display: inline-block;
         cursor: pointer;
@@ -96,6 +93,7 @@
         text-decoration: none;
         font-size: inherit;
         font-family: inherit;
+        margin-bottom: -15%;
     }
 
     .letsSee,

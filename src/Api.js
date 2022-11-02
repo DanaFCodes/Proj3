@@ -4,30 +4,24 @@ import './partials/_api.scss';
 // children to this component: 
 import DropDown from './DropDown';
 import KeywordForm from './KeywordsForm';
+import Loader from './Loader';
 
 
 function ApiCall() {
-    // first value is current state when we render, second value is a function which updates our state... so here we are using the setAllArt function to store the API response, and then accessing it with allArt when we map through at the bottom... wondering if 
     const [allArt, setAllArt] = useState([]);
-    
-    // in quotaation becuase value is in ''
+
     const [selectedApi, setSelectedApi] = useState('');
 
+    const [loading, setLoading] = useState(false);
+
+    const [keyword, setKeyword] = useState('');
+
+    const [inspoClicked, setInspoClicked] = useState(false);
 
     function makeRequest() {
-        if (selectedApi === 'AIC') {
-            axios({
-                url: `https://api.artsy.net/api/`,
-                method: "GET",
-                dataResponse: "json",
-                params: {
-                    client_id: 'f99c82f03c43e56ff8b7',
-                    limit: 100,
-                }
-                
-            }).then((response) => {
-                setAllArt(response.data)
-            });
+    
+        if (selectedApi === '') {
+            alert('please select a database!')
 
         } else if (selectedApi === 'RIJKS') {
             axios({
@@ -35,12 +29,22 @@ function ApiCall() {
                 method: "GET",
                 dataResponse: "json",
                 params: {
-                    // imgonly: true,
                     key: 'rtliWmhr',
                     ps: 100,
+                    q: keyword
                 },
             }).then((response) => {
-                setAllArt(response.data.artObjects)
+                
+                const newArtData = response.data.artObjects.map((art) => {
+                    return {
+                        ...art,
+                        imageUrl: art.webImage.url,
+                        imageCreator: art.longTitle,
+                        altText: art.title
+                    }
+                })
+                setAllArt(newArtData)
+                setLoading(true);
             });
 
         } else {
@@ -50,60 +54,72 @@ function ApiCall() {
                 dataResponse: "json",
                 params: {
                     limit: 100,
+                    q: keyword
                 },
             }).then((response) => {
-                setAllArt(response.data.data)
-                // console.log('api3 loaded')
+                const newArtData = response.data.data.map((art) => {
+                    if (art.images) {
+                        return {
+                            ...art,
+                            imageUrl: art.images.print.url,
+                            imageCreator: art.tombstone,
+                            altText: art.title
+                       }
+                    }
+                }).filter((noImages) => {
+                    if (noImages !== undefined) {
+                        return noImages
+                    }
+                })
+                setAllArt(newArtData)
+                setLoading(true);
             });
         }
+    }
+
+    function handleChange(e) {
+        setKeyword(e.target.value)
     }
 
     function callDatabase(e) {
         e.preventDefault();
         makeRequest()
+        setInspoClicked(true)
+        setLoading(false)
+        // CANT CLEAR OUT THE FORM
+        // setKeyword('')
     }
 
     function getUserSelectedApi(e) {
-        // updated selectedAPi(^) with arugmnet "value", through setSelectedApi function
         e.preventDefault();
         setSelectedApi(e.target.value)
     }
-
-
-    // has to be outside of useEffect (asynch)
-    console.log(allArt);
-
+    
+  
     return (
         <>
+            {/* this tells us which function the child comp has access to */}
             <DropDown getUserSelectedApi={getUserSelectedApi} />
-            <KeywordForm callDatabase={callDatabase} />
-            
-            {
-                
+            <KeywordForm callDatabase={callDatabase} handleChange={handleChange} />
+
+            {inspoClicked ? 
+                loading ? 
                 allArt.map(item => {
+                    return (
+                        <figure className='img'>
+                            <img className='cma' key={item.id} src={item.imageUrl} alt={item.altText} />
+                            <figcaption className='caption'>
+                                <h2>{item.imageCreator}</h2>
+                            </figcaption>
+                         </figure>
+                    )
 
-                    if (!!item?.images) {
-                        return (<figure className='img'><img className='cma' key={item.id} src={item.images.print.url}  />
-                            <figcaption className='caption'><h2>{item.title} {item.creation_date} {item.creators.description}</h2></figcaption>
-                        </figure>)
-                    } else if (!!item?.webImage) {
-                        return (<figure className='img'><img key={item.id} src={item.webImage.url} />
-                            <figcaption className='caption'><h2>{item.longTitle}</h2></figcaption>
-                        </figure>)
-
-
-                    }
-
-
-                })
-            
+                }) : <Loader />
+            : null
             }
-            
-             
         </>
     )
-
+    
 }
-
 
 export default ApiCall;

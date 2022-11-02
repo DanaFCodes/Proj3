@@ -7,10 +7,8 @@ import './partials/_index.scss';
 function App() {
   return (
     <div className="App">
-      
       <Header />
       <Api />
-
     </div>
   )
 }
