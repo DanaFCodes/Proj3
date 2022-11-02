@@ -57,6 +57,7 @@ function ApiCall() {
                     q: keyword
                 },
             }).then((response) => {
+                
                 const newArtData = response.data.data.map((art) => {
                     if (art.images) {
                         return {
