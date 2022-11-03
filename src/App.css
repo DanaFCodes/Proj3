@@ -1,0 +1,482 @@
+html {
+  line-height: 1.15;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+article, aside, footer, header, nav, section {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+figcaption, figure, main {
+  display: block;
+}
+
+figure {
+  margin: 1em 40px;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+b, strong {
+  font-weight: inherit;
+}
+
+b, strong {
+  font-weight: bolder;
+}
+
+code, kbd, samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+dfn {
+  font-style: italic;
+}
+
+mark {
+  background-color: #ff0;
+  color: #000;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+audio, video {
+  display: inline-block;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+img {
+  border-style: none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, html [type=button], [type=reset], [type=submit] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+}
+
+[type=checkbox], [type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+details, menu {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+canvas {
+  display: inline-block;
+}
+
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+body {
+  background-color: rgba(233, 189, 66, 0.4);
+}
+body .wrapper {
+  max-width: 1260px;
+  width: 93%;
+  margin: 0 auto;
+}
+body html {
+  font-size: 125%;
+}
+
+.dropDown h2 {
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  padding-top: 2%;
+  letter-spacing: 2px;
+  color: #2f827d;
+  font-size: 1.5rem;
+}
+.dropDown select {
+  text-align: center;
+  width: 40%;
+  margin-left: 30%;
+  font-size: 1rem;
+  background-color: #ed6a5a;
+  border: none;
+  border-radius: 30%;
+  border: 8px dotted #ffe66d;
+  color: #0f2f34;
+  font-weight: 600;
+}
+.dropDown select .option {
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  background-color: #ed6a5a;
+  color: #0f2f34;
+  font-size: 1rem;
+  width: 40%;
+}
+
+.img,
+.caption {
+  display: flex;
+  margin-top: 5%;
+  justify-content: center;
+  margin-bottom: 5%;
+  flex-wrap: wrap;
+}
+
+.img {
+  position: relative;
+  margin-top: 20%;
+  padding-bottom: 2%;
+}
+
+.caption {
+  position: absolute;
+  top: 90%;
+}
+
+.img img {
+  max-width: 100%;
+  max-height: 90vh;
+}
+.img h2 {
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #1a535c;
+  font-size: 0.8rem;
+  padding-top: 2%;
+  width: 70%;
+}
+
+.form {
+  text-align: center;
+  margin-top: 6%;
+  font-family: "Lora", serif;
+  color: #2f827d;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.form .button {
+  margin-top: -5%;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  margin-bottom: -15%;
+}
+.form .letsSee,
+.form .rando {
+  font-weight: 600;
+  color: #0f2f34;
+  padding: 0.8em 1.5em;
+  margin-left: 2em;
+  background: #ffe66d;
+  border: 2px solid #ed6a5a;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), 150ms cubic-bezier(0, 0, 0.58, 1);
+  margin-bottom: 15%;
+}
+.form .letsSee::before,
+.form .rando::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #eabc91;
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px #2f827d, 0 0.625em 0 0 #ed6a5a;
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+.form .letsSee:hover,
+.form .rando:hover {
+  background: #ed6a5a;
+  transform: translate(0, 0.25em);
+}
+.form .letsSee:hover::before,
+.form .rando:hover::before {
+  box-shadow: 0 0 0 2px #ed6a5a, 0 0.5em 0 0 #ed6a5a;
+  transform: translate3d(0, 0.5em, -1em);
+}
+.form .letsSee:active,
+.form .rando:active {
+  background: #ed6a5a;
+  transform: translate(0em, 0.75em);
+}
+.form .letsSee:active::before,
+.form .rando:active::before {
+  box-shadow: 0 0 0 2px #ed6a5a, 0 0 #ed6a5a;
+  transform: translate3d(0, 0, -1em);
+}
+
+.header h1 {
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  padding-top: 3%;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #1a535c;
+  font-size: 3rem;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 38vh;
+  width: 100vw;
+}
+.footer h2 {
+  font-family: "Varela Round", sans-serif;
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1a535c;
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  top: 150px;
+  left: 47%;
+}
+
+.lds-ripple div {
+  transform: scale(1.2);
+  position: absolute;
+  border: 4px solid rgb(177, 19, 19);
+  opacity: 1;
+  border-radius: 50%;
+  -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+          animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+@-webkit-keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  4% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  5% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}/*# sourceMappingURL=App.css.map */

@@ -4,12 +4,27 @@
     h1 {
         font-family: $h1;
         text-align: center;
-        padding-top: 6%;
+        padding-top: 3%;
         letter-spacing: 8px;
         text-transform: uppercase;
         color: #1a535c;
         font-size: 3rem;
     }
+}
 
-
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 38vh;
+    width: 100vw;
+    h2 {
+        font-family: $h1;
+        text-align: center;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #1a535c;
+        font-size: 1rem;
+        margin-top: auto;
+    }
 }

@@ -14,8 +14,7 @@ function ApiCall() {
     const [keyword, setKeyword] = useState('');
     const [inspoClicked, setInspoClicked] = useState(false);
 
-    function makeRequest() {
-    
+function makeRequest() {
         if (selectedApi === '') {
             alert('please select a database!')
 
@@ -71,33 +70,31 @@ function ApiCall() {
                 setAllArt(newArtData)
                 setLoading(true);
             });
-        }
     }
+}
 
-    function handleChange(e) {
-        setKeyword(e.target.value)
-    }
+function handleChange(e) {
+    setKeyword(e.target.value)
+}
 
-    function callDatabase(e) {
-        e.preventDefault();
-        makeRequest()
-        setInspoClicked(true)
-        setLoading(false)
-        // CANT CLEAR OUT THE FORM
-        // setKeyword('')
-    }
+function callDatabase(e) {
+    e.preventDefault();
+    makeRequest()
+    setInspoClicked(true)
+    setLoading(false)
+    setKeyword('')
+}
 
-    function getUserSelectedApi(e) {
-        e.preventDefault();
-        setSelectedApi(e.target.value)
-    }
-    
+function getUserSelectedApi(e) {
+    e.preventDefault();
+    setSelectedApi(e.target.value)
+}
+
   
-    return (
+return (
         <>
-            {/* this tells us which function the child comp has access to */}
             <DropDown getUserSelectedApi={getUserSelectedApi} />
-            <KeywordForm callDatabase={callDatabase} handleChange={handleChange} />
+            <KeywordForm callDatabase={callDatabase} handleChange={handleChange} keyword={keyword} />
 
             {inspoClicked ? 
                 loading ? 
